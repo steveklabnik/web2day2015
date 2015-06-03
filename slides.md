@@ -373,6 +373,14 @@ pub fn uncompress(src: &[u8]) -> Option<Vec<u8>> {
 }
 ```
 
+# Embedding in other languages
+
+Write a Ruby gem in Rust!
+
+Write a Node module in Rust!
+
+Write a Python extension in Rust!
+
 # Cargo
 
 ```sh
@@ -416,6 +424,27 @@ $ cargo build
    Compiling regex v0.1.33
    Compiling foo v0.1.0 (file:///home/steve/tmp/foo)
 ```
+
+# User feedback
+
+> Yes thanks everyone, Rust has been a much more significant move than we had
+> thought. We have performance, increased safety, modularity, traits  etc. In
+> addition we have found something even more significant, first time working
+> code.  By this I mean debugging time is almost zero (beyond logic errors of
+> course) in comparison, for example our last IP library (rUDP in c++) was a 5
+> month job to remove data races (luckily we used all clang sanitisers and
+> static analysis in build and CI, but never the less). 
+
+> Same task in Rust, worked of the bat, same with next layer (routing) and then
+> next layer (vaults). This is very significant indeed and I am happy to
+> discuss this further. I think it is vastly underestimated. 
+
+> I have also found an interesting paradigm here, Ruby, Python, Jave, c# etc.
+> programmers just lift Rust and code almost immediately (seeking out libraries
+> and asking questions). C/C++ (especially library level) actually take a huge
+> time to transition, it is like they have to “unlearn fear”. I say this as
+> somebody who did a lot of c++ (dirvine on github). Not true of all, of
+> course, but also a surprise. 
 
 # Learning More
 

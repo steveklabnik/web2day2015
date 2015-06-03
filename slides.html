@@ -378,6 +378,14 @@ task &#39;rustc&#39; failed at &#39;explicit failure&#39;, ...
 }
 </pre>
 
+<h1 id="embedding-in-other-languages" class='section-header'><a
+                           href="#embedding-in-other-languages">Embedding in other languages</a></h1>
+<p>Write a Ruby gem in Rust!</p>
+
+<p>Write a Node module in Rust!</p>
+
+<p>Write a Python extension in Rust!</p>
+
 <h1 id="cargo" class='section-header'><a
                            href="#cargo">Cargo</a></h1>
 <pre><code class="language-sh">$ cargo new foo --bin
@@ -417,6 +425,29 @@ regex = &quot;0.1.33&quot;
    Compiling regex v0.1.33
    Compiling foo v0.1.0 (file:///home/steve/tmp/foo)
 </code></pre>
+
+<h1 id="user-feedback" class='section-header'><a
+                           href="#user-feedback">User feedback</a></h1>
+<blockquote>
+<p>Yes thanks everyone, Rust has been a much more significant move than we had
+thought. We have performance, increased safety, modularity, traits  etc. In
+addition we have found something even more significant, first time working
+code.  By this I mean debugging time is almost zero (beyond logic errors of
+course) in comparison, for example our last IP library (rUDP in c++) was a 5
+month job to remove data races (luckily we used all clang sanitisers and
+static analysis in build and CI, but never the less). </p>
+
+<p>Same task in Rust, worked of the bat, same with next layer (routing) and then
+next layer (vaults). This is very significant indeed and I am happy to
+discuss this further. I think it is vastly underestimated. </p>
+
+<p>I have also found an interesting paradigm here, Ruby, Python, Jave, c# etc.
+programmers just lift Rust and code almost immediately (seeking out libraries
+and asking questions). C/C++ (especially library level) actually take a huge
+time to transition, it is like they have to “unlearn fear”. I say this as
+somebody who did a lot of c++ (dirvine on github). Not true of all, of
+course, but also a surprise. </p>
+</blockquote>
 
 <h1 id="learning-more" class='section-header'><a
                            href="#learning-more">Learning More</a></h1>
