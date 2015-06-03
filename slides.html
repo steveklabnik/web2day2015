@@ -27,11 +27,12 @@
 
 <h1 id="about-rust" class='section-header'><a
                            href="#about-rust">About Rust</a></h1>
+<p>Rust is a <em>systems</em> programming language focusing on three things:</p>
+
 <ul>
-<li>Rust is a really interesting new programming language.</li>
-<li>Rust is a good choice when you&#39;d choose C++. And maybe other times.</li>
-<li>&quot;Rust is a systems language pursuing the trifecta:</br> safe, concurrent, and fast.&quot;</li>
-<li>Rust is an ownership-oriented programming language.</li>
+<li>Safety</li>
+<li>Speed</li>
+<li>Concurrency</li>
 </ul>
 
 <h1 id="origins" class='section-header'><a
@@ -48,6 +49,16 @@ worth knowing.</p>
 
 <p>Alan Perlis</p>
 </blockquote>
+
+<h1 id="why-rust?-1" class='section-header'><a
+                           href="#why-rust?-1">Why Rust?</a></h1>
+<p>In a word: Ownership</p>
+
+<h1 id="why-rust?-2" class='section-header'><a
+                           href="#why-rust?-2">Why Rust?</a></h1>
+<p>Rust is poised to be many people’s first systems language. Newbies welcome!</p>
+
+<p>The compiler is here to help you, and so are we.</p>
 
 <h1 id="stability" class='section-header'><a
                            href="#stability">Stability</a></h1>
@@ -74,7 +85,7 @@ worth knowing.</p>
 }
 </pre>
 
-<pre><code class="language-text">segfault.rs:3:4: 3:6 error: type &amp;amp;str cannot be dereferenced
+<pre><code class="language-text">segfault.rs:3:4: 3:6 error: type &amp;str cannot be dereferenced
 segfault.rs:3     *s = &quot;H&quot;;
                   ^~
 error: aborting due to previous error
@@ -94,17 +105,8 @@ task &#39;rustc&#39; failed at &#39;explicit failure&#39;, ...
 
 <span class='kw'>fn</span> <span class='ident'>main</span>() {
     <span class='kw'>let</span> <span class='ident'>nums</span> <span class='op'>=</span> [<span class='number'>1</span>, <span class='number'>2</span>];
-    <span class='kw'>let</span> <span class='ident'>noms</span> <span class='op'>=</span> [<span class='string'>&quot;Tim&quot;</span>, <span class='string'>&quot;Eston&quot;</span>, <span class='string'>&quot;Aaron&quot;</span>, <span class='string'>&quot;Ben&quot;</span>];
 
     <span class='kw'>let</span> <span class='ident'>odds</span> <span class='op'>=</span> <span class='ident'>nums</span>.<span class='ident'>iter</span>().<span class='ident'>map</span>(<span class='op'>|</span><span class='kw-2'>&amp;</span><span class='ident'>x</span><span class='op'>|</span> <span class='ident'>x</span> <span class='op'>*</span> <span class='number'>2</span> <span class='op'>-</span> <span class='number'>1</span>);
-
-    <span class='kw'>for</span> <span class='ident'>num</span> <span class='kw'>in</span> <span class='ident'>odds</span> {
-        <span class='ident'>thread</span>::<span class='ident'>spawn</span>(<span class='kw'>move</span> <span class='op'>||</span> {
-            <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;{} says hello from a thread!&quot;</span>, <span class='ident'>noms</span>[<span class='ident'>num</span>]);
-        });
-    }
-
-    <span class='ident'>thread</span>::<span class='ident'>sleep_ms</span>(<span class='number'>100</span>);
 }
 </pre>
 
@@ -133,6 +135,26 @@ task &#39;rustc&#39; failed at &#39;explicit failure&#39;, ...
 
 <h1 id="threads" class='section-header'><a
                            href="#threads">Threads</a></h1><pre id='rust-example-rendered' class='rust '>
+<span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>thread</span>;
+
+<span class='kw'>fn</span> <span class='ident'>main</span>() {
+    <span class='kw'>let</span> <span class='ident'>nums</span> <span class='op'>=</span> [<span class='number'>1</span>, <span class='number'>2</span>];
+    <span class='kw'>let</span> <span class='ident'>noms</span> <span class='op'>=</span> [<span class='string'>&quot;Tim&quot;</span>, <span class='string'>&quot;Eston&quot;</span>, <span class='string'>&quot;Aaron&quot;</span>, <span class='string'>&quot;Ben&quot;</span>];
+
+    <span class='kw'>let</span> <span class='ident'>odds</span> <span class='op'>=</span> <span class='ident'>nums</span>.<span class='ident'>iter</span>().<span class='ident'>map</span>(<span class='op'>|</span><span class='kw-2'>&amp;</span><span class='ident'>x</span><span class='op'>|</span> <span class='ident'>x</span> <span class='op'>*</span> <span class='number'>2</span> <span class='op'>-</span> <span class='number'>1</span>);
+
+    <span class='kw'>for</span> <span class='ident'>num</span> <span class='kw'>in</span> <span class='ident'>odds</span> {
+        <span class='ident'>thread</span>::<span class='ident'>spawn</span>(<span class='kw'>move</span> <span class='op'>||</span> {
+            <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;{} says hello from a thread!&quot;</span>, <span class='ident'>noms</span>[<span class='ident'>num</span>]);
+        });
+    }
+
+    <span class='ident'>thread</span>::<span class='ident'>sleep_ms</span>(<span class='number'>100</span>);
+}
+</pre>
+
+<h1 id="channels" class='section-header'><a
+                           href="#channels">Channels</a></h1><pre id='rust-example-rendered' class='rust '>
 <span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>sync</span>::<span class='ident'>mpsc</span>;
 <span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>thread</span>;
 
@@ -251,7 +273,7 @@ task &#39;rustc&#39; failed at &#39;explicit failure&#39;, ...
 }
 
 <span class='kw'>impl</span> <span class='ident'>Drop</span> <span class='kw'>for</span> <span class='ident'>TimeBomb</span> {
-    <span class='kw'>fn</span> <span class='ident'>drop</span>(<span class='kw-2'>&amp;</span><span class='ident'>amp</span>;<span class='kw-2'>mut</span> <span class='self'>self</span>) {
+    <span class='kw'>fn</span> <span class='ident'>drop</span>(<span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='self'>self</span>) {
         <span class='kw'>for</span> _ <span class='kw'>in</span> <span class='ident'>range</span>(<span class='number'>0</span>, <span class='self'>self</span>.<span class='ident'>explosivity</span>) {
             <span class='ident'>println</span>(<span class='string'>&quot;blam!&quot;</span>);
         }
@@ -356,6 +378,46 @@ task &#39;rustc&#39; failed at &#39;explicit failure&#39;, ...
 }
 </pre>
 
+<h1 id="cargo" class='section-header'><a
+                           href="#cargo">Cargo</a></h1>
+<pre><code class="language-sh">$ cargo new foo --bin
+$ cd foo
+$ cargo run
+   Compiling foo v0.1.0 (file:///home/steve/tmp/foo)
+     Running `target/debug/foo`
+Hello, world!
+</code></pre>
+
+<h1 id="cargo.toml" class='section-header'><a
+                           href="#cargo.toml">Cargo.toml</a></h1>
+<pre><code class="language-toml">[package]
+name = “foo”
+version = “0.1.0”
+authors = [“Steve Klabnik &lt;steve@steveklabnik.com&gt;”]
+</code></pre>
+
+<h1 id="cargo.toml-1" class='section-header'><a
+                           href="#cargo.toml-1">Cargo.toml</a></h1>
+<pre><code class="language-toml">[package]
+name = &quot;foo&quot;
+version = &quot;0.1.0&quot;
+authors = [&quot;Steve Klabnik &lt;steve@steveklabnik.com&gt;&quot;]
+
+[dependencies]
+regex = &quot;0.1.33&quot;
+</code></pre>
+
+<h1 id="cargo-1" class='section-header'><a
+                           href="#cargo-1">Cargo</a></h1>
+<pre><code class="language-sh">$ cargo build
+    Updating registry `https://github.com/rust-lang/crates.io-index`
+ Downloading regex v0.1.33
+ Downloading regex-syntax v0.1.2
+   Compiling regex-syntax v0.1.2
+   Compiling regex v0.1.33
+   Compiling foo v0.1.0 (file:///home/steve/tmp/foo)
+</code></pre>
+
 <h1 id="learning-more" class='section-header'><a
                            href="#learning-more">Learning More</a></h1>
 <ul>
@@ -370,6 +432,7 @@ task &#39;rustc&#39; failed at &#39;explicit failure&#39;, ...
 <li>/r/rust</li>
 <li>#rust on irc.mozilla.org</li>
 <li>This Week in Rust</li>
+<li>Stack Overflow</li>
 </ul>
 
 <h1 id="code" class='section-header'><a

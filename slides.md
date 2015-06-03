@@ -4,10 +4,11 @@ Steve Klabnik
 
 # About Rust
 
-* Rust is a really interesting new programming language.
-* Rust is a good choice when you'd choose C++. And maybe other times.
-* "Rust is a systems language pursuing the trifecta:</br> safe, concurrent, and fast."
-* Rust is an ownership-oriented programming language.
+Rust is a *systems* programming language focusing on three things:
+
+* Safety
+* Speed
+* Concurrency
 
 # Origins
             
@@ -22,6 +23,15 @@ Mozilla writes lots of C++, and feels that pain.
 >
 > Alan Perlis
 
+# Why Rust?
+
+In a word: Ownership
+
+# Why Rust?
+
+Rust is poised to be many people’s first systems language. Newbies welcome!
+
+The compiler is here to help you, and so are we.
 
 # Stability
 
@@ -51,7 +61,7 @@ fn main() {
 ```
 
 ```text
-segfault.rs:3:4: 3:6 error: type &amp;str cannot be dereferenced
+segfault.rs:3:4: 3:6 error: type &str cannot be dereferenced
 segfault.rs:3     *s = "H";
                   ^~
 error: aborting due to previous error
@@ -73,17 +83,8 @@ use std::thread;
 
 fn main() {
     let nums = [1, 2];
-    let noms = ["Tim", "Eston", "Aaron", "Ben"];
 
     let odds = nums.iter().map(|&x| x * 2 - 1);
-
-    for num in odds {
-        thread::spawn(move || {
-            println!("{} says hello from a thread!", noms[num]);
-        });
-    }
-
-    thread::sleep_ms(100);
 }
 ```
 
@@ -113,6 +114,27 @@ fn main() {
 ```
 
 # Threads
+
+```rust
+use std::thread;
+
+fn main() {
+    let nums = [1, 2];
+    let noms = ["Tim", "Eston", "Aaron", "Ben"];
+
+    let odds = nums.iter().map(|&x| x * 2 - 1);
+
+    for num in odds {
+        thread::spawn(move || {
+            println!("{} says hello from a thread!", noms[num]);
+        });
+    }
+
+    thread::sleep_ms(100);
+}
+```
+
+# Channels
 
 ```rust
 use std::sync::mpsc;
@@ -240,7 +262,7 @@ struct TimeBomb {
 }
 
 impl Drop for TimeBomb {
-    fn drop(&amp;mut self) {
+    fn drop(&mut self) {
         for _ in range(0, self.explosivity) {
             println("blam!");
         }
@@ -351,6 +373,50 @@ pub fn uncompress(src: &[u8]) -> Option<Vec<u8>> {
 }
 ```
 
+# Cargo
+
+```sh
+$ cargo new foo --bin
+$ cd foo
+$ cargo run
+   Compiling foo v0.1.0 (file:///home/steve/tmp/foo)
+     Running `target/debug/foo`
+Hello, world!
+```
+
+# Cargo.toml
+
+```toml
+[package]
+name = “foo”
+version = “0.1.0”
+authors = [“Steve Klabnik <steve@steveklabnik.com>”]
+```
+
+# Cargo.toml
+
+```toml
+[package]
+name = "foo"
+version = "0.1.0"
+authors = ["Steve Klabnik <steve@steveklabnik.com>"]
+
+[dependencies]
+regex = "0.1.33"
+```
+
+# Cargo
+
+```sh
+$ cargo build
+    Updating registry `https://github.com/rust-lang/crates.io-index`
+ Downloading regex v0.1.33
+ Downloading regex-syntax v0.1.2
+   Compiling regex-syntax v0.1.2
+   Compiling regex v0.1.33
+   Compiling foo v0.1.0 (file:///home/steve/tmp/foo)
+```
+
 # Learning More
 
 * The Rust Programming Language
@@ -362,6 +428,7 @@ pub fn uncompress(src: &[u8]) -> Option<Vec<u8>> {
 * /r/rust
 * #rust on irc.mozilla.org
 * This Week in Rust
+* Stack Overflow
 
 # Code
 
