@@ -3,10 +3,11 @@
 Steve Klabnik
 
 # About Rust
-Rust is a really interesting new programming language.
-Rust is a good choice when you'd choose C++. And maybe other times.
-"Rust is a systems language pursuing the trifecta:</br> safe, concurrent, and fast."
-Rust is an ownership-oriented programming language.
+
+* Rust is a really interesting new programming language.
+* Rust is a good choice when you'd choose C++. And maybe other times.
+* "Rust is a systems language pursuing the trifecta:</br> safe, concurrent, and fast."
+* Rust is an ownership-oriented programming language.
 
 # Origins
             
@@ -14,12 +15,21 @@ Rust was written by Graydon Hoare. Mozilla has taken stewardship.
             
 Mozilla writes lots of C++, and feels that pain.
 
+# Why Rust?
+
+> A language that doesn’t affect the way you think about programming, is not
+> worth knowing.
+>
+> Alan Perlis
+
+
 # Stability
-Rust is currently at version 1.0
 
-New versions every six weeks!
+* Rust is currently at version 1.0
 
-Backwards compatible
+* New versions every six weeks!
+
+* Backwards compatible
 
 # Segfaults
 
