@@ -175,22 +175,22 @@ fn main() {
 
 # Threads and safety
 
-```text
-13:12 error: use of moved value: `*x` [E0382]
- *x += 5;
- ^~~~~~~
-11:6 note: `x` moved into closure environment here because it has type `[closure(())]`, which is non-copyable
-thread::spawn(move || {
-    let result = 5 + *x;
-     tx.send(result);
- });
-note: in expansion of closure expansion
-11:6 note: expansion site
-11:6 help: perhaps you meant to use `clone()`?
-13:12 error: cannot assign to immutable `Box` content `*x`
- *x += 5;
- ^~~~~~~
-```
+<pre>
+        13:12 error: use of moved value: `*x` [E0382]
+         *x += 5;
+         ^~~~~~~
+        11:6 note: `x` moved into closure environment here because it has type `[closure(())]`, which is non-copyable
+        thread::spawn(move || {
+            let result = 5 + *x;
+             tx.send(result);
+         });
+        note: in expansion of closure expansion
+        11:6 note: expansion site
+        11:6 help: perhaps you meant to use `clone()`?
+        13:12 error: cannot assign to immutable `Box` content `*x`
+         *x += 5;
+         ^~~~~~~
+</pre>
 
 # Pattern matching
 
